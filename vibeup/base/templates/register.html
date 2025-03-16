@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeUp - Sign Up</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e5e5f7;
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 350px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+        h2 {
+            color: #3b5998;
+        }
+        input {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin: 12px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            background-color: #673ab7;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #5a2ca0;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            display: none;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>VibeUp</h2>
+        <p>Sign up to get started.</p>
+        <form id="signupForm">
+            <input type="text" id="name" placeholder="Full Name">
+            <span class="error" id="nameError">Name is required</span>
+            
+            <input type="email" id="email" placeholder="Email">
+            <span class="error" id="emailError">Valid email is required</span>
+            
+            <input type="password" id="password" placeholder="Password">
+            <span class="error" id="passwordError">Password must be at least 6 characters</span>
+            
+            <input type="password" id="confirmPassword" placeholder="Confirm Password">
+            <span class="error" id="confirmPasswordError">Passwords do not match</span>
+            
+            <button type="submit">Register</button>
+        </form>
+        <p><a href="#">Login</a> if you have an account.</p>
+    </div>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let valid = true;
+            let name = document.getElementById("name");
+            let email = document.getElementById("email");
+            let password = document.getElementById("password");
+            let confirmPassword = document.getElementById("confirmPassword");
+            
+            document.getElementById("nameError").style.display = name.value ? "none" : "block";
+            document.getElementById("emailError").style.display = email.value.includes("@") ? "none" : "block";
+            document.getElementById("passwordError").style.display = password.value.length >= 6 ? "none" : "block";
+            document.getElementById("confirmPasswordError").style.display = password.value === confirmPassword.value ? "none" : "block";
+            
+            if (name.value && email.value.includes("@") && password.value.length >= 6 && password.value === confirmPassword.value) {
+                alert("Registration successful!");
+            }
+        });
+    </script>
+</body>
+</html>
